@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+   
+    <!-- <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/> -->
+
+  </head>
+<body>
+    <h1 class="display-6 text-primary p-2">Spring MVC Application</h1>
+    <div class="container">
+  
+        <form action="#" th:action="@{/students/add}" method="post" th:object="${student}">
+
+          <div class="form-group">
+            <label for="description">First Name</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" th:field="*{firstName}" placeholder="Enter last name">
+          </div>
+          <div class="form-group">
+            <label for="description">Last Name</label>
+            <input type="text" class="form-control" id="lastNmae" name="lastName" th:field="*{lastName}" placeholder="Enter first name">
+          </div>
+          <div class="form-group">
+            <label for="description">Email Name</label>
+            <input type="email" class="form-control" id="email" name="email" th:field="*{email}" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label for="description">Date of Birth</label>
+            <input type="dateOfBirth" class="form-control" id="dateOfBirth" name="dateOfBirth" th:field="*{dateOfBirth}" placeholder="Enter date of birth">
+          </div>
+          <div class="form-group">
+            <label for="description">Address</label>
+            <input type="address" class="form-control" id="address" name="address" th:field="*{address}" placeholder="Enter address">
+          </div>
+
+          <button class="btn btn-success my-1" type="submit">Create</button>
+  
+        </form>
+
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+      <!-- <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script> -->
+      <!-- <script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script> -->
+      <!-- <script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script> -->
+
+</body>
+
+</html>
