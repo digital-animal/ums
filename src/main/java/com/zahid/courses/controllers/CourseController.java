@@ -56,7 +56,7 @@ public class CourseController {
         Course existingCourse = courseService.getCourseById(id);
         existingCourse.setId(id);
         existingCourse.setCourseTitle(course.getCourseTitle());
-        existingCourse.setCourseTitle(course.getCourseHour());
+        existingCourse.setCourseHour(course.getCourseHour());
 
         // save updated course object
         courseService.updateCourse(existingCourse);

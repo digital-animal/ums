@@ -1,4 +1,4 @@
-package com.zahid.students.models;
+package com.zahid.students;
 
 import java.time.Instant;
 import java.util.Date;

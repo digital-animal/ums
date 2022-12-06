@@ -1,13 +1,10 @@
-package com.zahid.students.services;
+package com.zahid.students;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.zahid.students.models.Student;
-import com.zahid.students.repositories.StudentRepository;
 
 @Service
 public class StudentService {

@@ -1,4 +1,4 @@
-package com.zahid.students.config;
+package com.zahid.students;
 
 import java.util.Date;
 
@@ -7,9 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
-import com.zahid.students.models.Student;
-import com.zahid.students.repositories.StudentRepository;
 
 @Component
 public class StudentSeeder implements CommandLineRunner {
