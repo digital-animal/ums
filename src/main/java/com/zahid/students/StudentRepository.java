@@ -1,8 +1,6 @@
-package com.zahid.students.repositories;
+package com.zahid.students;
 
 import org.springframework.data.repository.CrudRepository;
-
-import com.zahid.students.models.Student;
 
 public interface StudentRepository extends CrudRepository<Student, Long> {
     // pass
