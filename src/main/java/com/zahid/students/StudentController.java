@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 // @RequestMapping("/students")
+@RestController
 public class StudentController {
     private final Logger logger = LoggerFactory.getLogger(StudentController.class);
 
@@ -42,6 +44,15 @@ public class StudentController {
 
         return modelAndView;
     }
+
+    // @GetMapping("/api/students/{id}")
+    // public Student getOneStudentWithCourse(@PathVariable("id") Long id) {
+    //     // ModelAndView modelAndView = new ModelAndView("student-edit-form");
+
+    //     // modelAndView.addObject("student", studentService.getStudent(id));
+
+    //     return studentService.getStudent(id);
+    // }
 
     @PostMapping("/students/{id}")
     public String updateStudent(@ModelAttribute Student student, @PathVariable("id") Long id, Model model) {
