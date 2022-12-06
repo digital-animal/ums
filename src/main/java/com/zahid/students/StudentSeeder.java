@@ -26,11 +26,11 @@ public class StudentSeeder implements CommandLineRunner {
 
     public void loadSeedData() {
         if(studentRepository.count() == 0) {
-            Student student1 = new Student("Alex", "Lee", "alex.lee@gmail.com", new Date(2000, 11, 27), "Badda, Dhaka");
-            Student student2 = new Student("Lee", "Cooper", "lee.cooper@gmail.com", new Date(2000, 11, 27), "Gulshan, Dhaka");
-            Student student3 = new Student("John", "Doe", "john.doe@gmail.com", new Date(2000, 11, 27), "Dhanmondi, Dhaka");
-            Student student4 = new Student("Zahid", "Jewel", "zahid.jewel@gmail.com", new Date(2000, 11, 27), "Uttara, Dhaka");
-            Student student5 = new Student("Asif", "Hasan", "asif.hasan@gmail.com", new Date(2000, 11, 27), "Demra, Dhaka");
+            Student student1 = new Student("Alex", "Lee", "alex.lee@gmail.com", new Date(2000, 11, 27).toString(), "Badda, Dhaka");
+            Student student2 = new Student("Lee", "Cooper", "lee.cooper@gmail.com", new Date(2000, 11, 27).toString(), "Gulshan, Dhaka");
+            Student student3 = new Student("John", "Doe", "john.doe@gmail.com", new Date(2000, 11, 27).toString(), "Dhanmondi, Dhaka");
+            Student student4 = new Student("Zahid", "Jewel", "zahid.jewel@gmail.com", new Date(2000, 11, 27).toString(), "Uttara, Dhaka");
+            Student student5 = new Student("Asif", "Hasan", "asif.hasan@gmail.com", new Date(2000, 11, 27).toString(), "Demra, Dhaka");
 
             studentRepository.save(student1);
             studentRepository.save(student2);

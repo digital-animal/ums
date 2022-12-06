@@ -33,12 +33,12 @@ public class Student {
     private String email;
 
     @Column(name = "date_of_birth", nullable = true)
-    private Date dateOfBirth;
+    private String dateOfBirth;
     
     @Column(name = "address", nullable = true)
     private String address;
 
-    public Student(String firstName, String lastName, String email, Date dateOfBirth, String address) {
+    public Student(String firstName, String lastName, String email, String dateOfBirth, String address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
