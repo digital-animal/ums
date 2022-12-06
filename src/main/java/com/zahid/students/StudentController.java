@@ -1,6 +1,7 @@
 package com.zahid.students.controllers;
 
 import java.time.Instant;
+import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,8 +68,13 @@ public class StudentController {
     }
 
     @PostMapping("/students/add")
-    public String createStudent(@ModelAttribute Student student, Model model) {
+    public String createStudent(@ModelAttribute Student student) {
+
+        System.out.println(student);
         logger.info("Student = {}", student);
+
+        // Date convertedDateOfBirth = new Date(student.getDateOfBirth());
+        // student.setDateOfBirth(convertedDateOfBirth.toString());
 
         studentService.addStudent(student);
 
