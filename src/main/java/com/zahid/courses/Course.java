@@ -1,5 +1,6 @@
 package com.zahid.courses;
 
+import com.zahid.teacher.Teacher;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -30,6 +31,13 @@ public class Course {
     // @JsonIgnore
     @ManyToMany
     private Set<Course> enrolledStudents = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(
+            name = "teacher_id",
+            nullable = true
+    )
+    private Teacher courseTeacher = null;
 
     public Course(String courseTitle, String couseHour) {
         this.courseTitle = courseTitle;
