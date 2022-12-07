@@ -1,6 +1,7 @@
 package com.zahid.courses;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +14,7 @@ import com.zahid.students.Student;
 @Entity
 @Table(name = "courses")
 @Data
+@NoArgsConstructor
 public class Course {
     @Id
     @Column(name = "course_id", nullable = false)
@@ -33,19 +35,7 @@ public class Course {
         this.courseTitle = courseTitle;
         this.courseHour = couseHour;
     }
-
-    public Course() {
-    }
-
-    @Override
-    public String toString() {
-        return "Course{" +
-                "id=" + id +
-                ", courseTitle='" + courseTitle + '\'' +
-                ", couseHour='" + courseHour + '\'' +
-                '}';
-    }
-
+    
     public void enrollStudentToCourse(Student student) {
     }
 }
