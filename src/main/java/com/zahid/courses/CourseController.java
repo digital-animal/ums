@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CourseController {
 
     private final Logger logger = LoggerFactory.getLogger(CourseController.class);
-
+    
     private CourseService courseService;
 
     public CourseController(CourseService courseService) {
@@ -27,7 +27,9 @@ public class CourseController {
     public String listCourses(Model model){
         model.addAttribute("courses", courseService.getAllCourses());
         System.out.println(courseService.getAllCourses());
+
         logger.info("courses", courseService);
+
         return "courses";
     }
 

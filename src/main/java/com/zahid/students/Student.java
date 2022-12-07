@@ -46,7 +46,6 @@ public class Student {
     @Column(name = "address", nullable = true)
     private String address;
 
-
     @ManyToMany
     @JoinTable(
             name = "enrolled_courses",

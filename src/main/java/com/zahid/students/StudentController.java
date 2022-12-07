@@ -52,15 +52,6 @@ public class StudentController {
         return modelAndView;
     }
 
-    // @GetMapping("/api/students/{id}")
-    // public Student getOneStudentWithCourse(@PathVariable("id") Long id) {
-    //     // ModelAndView modelAndView = new ModelAndView("student-edit-form");
-
-    //     // modelAndView.addObject("student", studentService.getStudent(id));
-
-    //     return studentService.getStudent(id);
-    // }
-
     @GetMapping("/api/students/{id}")
     public Student getOneStudentWithCourse(@PathVariable("id") Long id) {
         // ModelAndView modelAndView = new ModelAndView("student-edit-form");
@@ -117,6 +108,7 @@ public class StudentController {
         return "redirect:/students";
     }
 
+
     @PutMapping("/api/students/{studentId}/{courseId}")
     Student enrollStudentToCourse(
             @PathVariable Long studentId,
@@ -124,6 +116,7 @@ public class StudentController {
     ) {
         Course course = courseService.getCourseById(courseId);
         Student student = studentService.getStudent(studentId);
+
         studentService.enrollStudentToCourse(student, course);
         
         return student;
