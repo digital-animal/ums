@@ -21,8 +21,7 @@ import com.zahid.courses.Course;
 import com.zahid.courses.CourseService;
 
 @Controller
-// @RequestMapping("/students")
-@RestController
+@RequestMapping("/students")
 public class StudentController {
     private final Logger logger = LoggerFactory.getLogger(StudentController.class);
 
@@ -32,7 +31,7 @@ public class StudentController {
     @Autowired
     private CourseService courseService; // better idea
 
-    @GetMapping("/students")
+    @GetMapping
     public ModelAndView getAllStudent() {
         logger.debug("request to GET index");
         ModelAndView modelAndView = new ModelAndView("student-home");
@@ -43,7 +42,7 @@ public class StudentController {
         return modelAndView;
     }
 
-    @GetMapping("/students/{id}")
+    @GetMapping("/{id}")
     public ModelAndView getOneStudent(@PathVariable("id") Long id) {
         ModelAndView modelAndView = new ModelAndView("student-edit-form");
 
@@ -52,16 +51,7 @@ public class StudentController {
         return modelAndView;
     }
 
-    // @GetMapping("/api/students/{id}")
-    // public Student getOneStudentWithCourse(@PathVariable("id") Long id) {
-    //     // ModelAndView modelAndView = new ModelAndView("student-edit-form");
-
-    //     // modelAndView.addObject("student", studentService.getStudent(id));
-
-    //     return studentService.getStudent(id);
-    // }
-
-    @GetMapping("/api/students/{id}")
+    @GetMapping("/api/{id}")
     public Student getOneStudentWithCourse(@PathVariable("id") Long id) {
         // ModelAndView modelAndView = new ModelAndView("student-edit-form");
 
@@ -70,7 +60,7 @@ public class StudentController {
         return studentService.getStudent(id);
     }
 
-    @PostMapping("/students/{id}")
+    @PostMapping("/{id}")
     public String updateStudent(@ModelAttribute Student student, @PathVariable("id") Long id, Model model) {
 
         logger.info("New student = {}", student);
@@ -80,7 +70,7 @@ public class StudentController {
         return "student-edit-done";
     }
 
-    @GetMapping("/students/add")
+    @GetMapping("/add")
     public ModelAndView createStudentForm(Model model) {
         ModelAndView modelAndView = new ModelAndView("student-create-form");
         Student student = new Student();
@@ -89,7 +79,7 @@ public class StudentController {
         return modelAndView;
     }
 
-    @PostMapping("/students/add")
+    @PostMapping("/add")
     public String createStudent(@ModelAttribute Student student) {
 
         logger.info("Student = {}", student);
@@ -99,7 +89,7 @@ public class StudentController {
         return "student-create-done";
     }
 
-    @GetMapping("/students/delete/{id}")
+    @GetMapping("/delete/{id}")
     public ModelAndView deletePrompt(@PathVariable("id") Long id) {
         logger.info("Student Id = {}", id);
         ModelAndView modelAndView = new ModelAndView("student-delete-confirm");
@@ -108,25 +98,22 @@ public class StudentController {
         return modelAndView;
     }
 
-    @PostMapping("/students/delete/{id}")
+    @PostMapping("/delete/{id}")
     public String deleteStudent(@PathVariable("id") Long id) {
         logger.info("Student Id = {}", id);
 
         studentService.deleteStudent(id);
 
-        return "redirect:/students";
+        return "redirect:";
     }
 
-    @PutMapping("/api/students/{studentId}/{courseId}")
-    Student enrollStudentToCourse(
-            @PathVariable Long studentId,
-            @PathVariable Long courseId
+    @PutMapping("/api/{studentId}/{courseId}")
+    public Student enrollStudentToCourse(
+
+            @PathVariable("studentId") Long studentId,
+            @PathVariable("courseId") Long courseId
     ) {
-        Course course = courseService.getCourseById(courseId);
-        Student student = studentService.getStudent(studentId);
-        studentService.enrollStudentToCourse(student, course);
-        
-        return student;
+        return studentService.enrollStudentToCourse(studentId, courseId);
     }
 
 }

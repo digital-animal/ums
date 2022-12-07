@@ -2,8 +2,6 @@ package com.zahid.courses;
 
 import java.util.List;
 
-import com.zahid.students.Student;
-
 public interface CourseService {
     List<Course> getAllCourses();
 

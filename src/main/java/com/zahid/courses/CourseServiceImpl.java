@@ -2,8 +2,6 @@ package com.zahid.courses;
 
 import org.springframework.stereotype.Service;
 
-import com.zahid.students.Student;
-
 import java.util.List;
 
 @Service
