@@ -1,9 +1,8 @@
-package com.zahid.courses.services.impl;
+package com.zahid.courses;
 
-import com.zahid.courses.models.Course;
-import com.zahid.courses.repositories.CourseRepository;
-import com.zahid.courses.services.CourseService;
 import org.springframework.stereotype.Service;
+
+import com.zahid.students.Student;
 
 import java.util.List;
 
@@ -40,4 +39,5 @@ public class CourseServiceImpl implements CourseService {
     public void deleteCourseById(Long id) {
         courseRepository.deleteById(id);
     }
+
 }

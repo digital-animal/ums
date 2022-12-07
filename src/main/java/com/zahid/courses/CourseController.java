@@ -1,15 +1,15 @@
-package com.zahid.courses.controllers;
+package com.zahid.courses;
 
-import com.zahid.courses.models.Course;
-import com.zahid.courses.services.CourseService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @Controller
+@RestController
 public class CourseController {
     private CourseService courseService;
 
@@ -32,8 +32,14 @@ public class CourseController {
         Course course = new Course();
         model.addAttribute("course", course);
         return "course-create";
-
     }
+
+    @GetMapping("/api/courses/{id}")
+    public Course getOneCourseWithStudent(@PathVariable("id") Long id) {
+
+        return courseService.getCourseById(id);
+    }
+
 
     @PostMapping("/courses")
     public String saveCourse(@ModelAttribute("course") Course course) {
