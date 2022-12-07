@@ -2,6 +2,7 @@ package com.zahid.students;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,11 @@ public class StudentService {
         studentRepository.deleteById(id);
     }
 
-    public void enrollCourseToStudent(Course course) {
+    public void enrollStudentToCourse(Student student, Course course) {
+        Student s = studentRepository.findById(student.getId()).get();
+        Set<Course> enrolledCourseList = s.getEnrolledCourseList();
+        System.out.println(enrolledCourseList);
+        enrolledCourseList.add(course);
+        studentRepository.save(s);
     }
 }

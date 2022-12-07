@@ -39,11 +39,4 @@ public class CourseServiceImpl implements CourseService {
     public void deleteCourseById(Long id) {
         courseRepository.deleteById(id);
     }
-
-    @Override
-    public void enrollStudentToCourse(Student student) {
-        // TODO Auto-generated method stub
-        
-    }
-
 }
