@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.zahid.courses.Course;
+
 @Service
 public class StudentService {
     @Autowired
@@ -33,5 +35,8 @@ public class StudentService {
 
     public void deleteStudent(Long id) {
         studentRepository.deleteById(id);
+    }
+
+    public void enrollCourseToStudent(Course course) {
     }
 }

@@ -1,8 +1,14 @@
-package com.zahid.courses.models;
+package com.zahid.courses;
 
 import lombok.Data;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.zahid.students.Student;
 
 @Entity
 @Table(name = "courses")
@@ -19,6 +25,10 @@ public class Course {
     @Column(name = "course_hour", nullable = false)
     private String courseHour;
 
+    // @JsonIgnore
+    @ManyToMany
+    private Set<Course> enrolledStudents = new HashSet<>();
+
     public Course(String courseTitle, String couseHour) {
         this.courseTitle = courseTitle;
         this.courseHour = couseHour;
@@ -34,5 +44,8 @@ public class Course {
                 ", courseTitle='" + courseTitle + '\'' +
                 ", couseHour='" + courseHour + '\'' +
                 '}';
+    }
+
+    public void enrollStudentToCourse(Student student) {
     }
 }

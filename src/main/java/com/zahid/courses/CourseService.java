@@ -1,8 +1,8 @@
-package com.zahid.courses.services;
-
-import com.zahid.courses.models.Course;
+package com.zahid.courses;
 
 import java.util.List;
+
+import com.zahid.students.Student;
 
 public interface CourseService {
     List<Course> getAllCourses();
@@ -14,4 +14,6 @@ public interface CourseService {
     Course updateCourse(Course course);
 
     void deleteCourseById(Long id);
+
+    void enrollStudentToCourse(Student student);
 }

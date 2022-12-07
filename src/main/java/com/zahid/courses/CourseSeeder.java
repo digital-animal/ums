@@ -1,7 +1,5 @@
-package com.zahid.courses.config;
+package com.zahid.courses;
 
-import com.zahid.courses.models.Course;
-import com.zahid.courses.repositories.CourseRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

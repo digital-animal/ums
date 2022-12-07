@@ -16,7 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.zahid.courses.models.Course;
+import com.zahid.courses.Course;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -52,7 +52,15 @@ public class Student {
     //     joinColumns = {@JoinColumn(name = "student_id", referencedColumnName = "student_id")},
     //     inverseJoinColumns = {@JoinColumn(name = "course_id", referencedColumnName = "course_id")}
     // )
-    // private Set<Course> courseList = new HashSet<>();
+    // private Set<Course> enrolledCourseList = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "enrolled_courses",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
+    private Set<Course> enrolledCourseList = new HashSet<>();
 
     public Student(String firstName, String lastName, String email, String dateOfBirth, String address) {
         this.firstName = firstName;

@@ -12,9 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.zahid.courses.Course;
+import com.zahid.courses.CourseService;
 
 @Controller
 // @RequestMapping("/students")
@@ -24,6 +28,9 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService; // better idea
+
+    @Autowired
+    private CourseService courseService; // better idea
 
     @GetMapping("/students")
     public ModelAndView getAllStudent() {
@@ -53,6 +60,15 @@ public class StudentController {
 
     //     return studentService.getStudent(id);
     // }
+
+    @GetMapping("/api/students/{id}")
+    public Student getOneStudentWithCourse(@PathVariable("id") Long id) {
+        // ModelAndView modelAndView = new ModelAndView("student-edit-form");
+
+        // modelAndView.addObject("student", studentService.getStudent(id));
+
+        return studentService.getStudent(id);
+    }
 
     @PostMapping("/students/{id}")
     public String updateStudent(@ModelAttribute Student student, @PathVariable("id") Long id, Model model) {
@@ -99,6 +115,18 @@ public class StudentController {
         studentService.deleteStudent(id);
 
         return "redirect:/students";
+    }
+
+    @PutMapping("/students/{studentId}/{courseId}")
+    Student enrollStudentToCourse(
+            @PathVariable Long studentId,
+            @PathVariable Long courseId
+    ) {
+        Course course = courseService.getCourseById(courseId);
+        Student student = studentService.getStudent(studentId);
+        studentService.enrollCourseToStudent(course);
+        
+        return student;
     }
 
 }
