@@ -108,14 +108,16 @@ public class StudentController {
         return "redirect:/students";
     }
 
-    @PutMapping("/students/{studentId}/{courseId}")
+
+    @PutMapping("/api/students/{studentId}/{courseId}")
     Student enrollStudentToCourse(
             @PathVariable Long studentId,
             @PathVariable Long courseId
     ) {
         Course course = courseService.getCourseById(courseId);
         Student student = studentService.getStudent(studentId);
-        studentService.enrollCourseToStudent(course);
+
+        studentService.enrollStudentToCourse(student, course);
         
         return student;
     }

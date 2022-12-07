@@ -39,5 +39,4 @@ public class CourseServiceImpl implements CourseService {
     public void deleteCourseById(Long id) {
         courseRepository.deleteById(id);
     }
-
 }

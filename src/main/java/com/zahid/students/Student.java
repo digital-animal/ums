@@ -46,14 +46,6 @@ public class Student {
     @Column(name = "address", nullable = true)
     private String address;
 
-    // @ManyToMany(fetch = FetchType.EAGER)
-    // @JoinTable(
-    //     name = "student_course", 
-    //     joinColumns = {@JoinColumn(name = "student_id", referencedColumnName = "student_id")},
-    //     inverseJoinColumns = {@JoinColumn(name = "course_id", referencedColumnName = "course_id")}
-    // )
-    // private Set<Course> enrolledCourseList = new HashSet<>();
-
     @ManyToMany
     @JoinTable(
             name = "enrolled_courses",
@@ -70,4 +62,7 @@ public class Student {
         this.address = address;
     }
 
+    public Set<Course> getEnrolledCourseList() {
+        return this.enrolledCourseList;
+    }
 }
