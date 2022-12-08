@@ -110,11 +110,13 @@ public class StudentController {
     @PutMapping("/api/{studentId}/{courseId}")
     public Student enrollStudentToCourse(
 
+    @PutMapping("/api/{studentId}/{courseId}")
+    public Student enrollStudentToCourse(
+
             @PathVariable("studentId") Long studentId,
             @PathVariable("courseId") Long courseId
     ) {
         return studentService.enrollStudentToCourse(studentId, courseId);
-
     }
 
 }
