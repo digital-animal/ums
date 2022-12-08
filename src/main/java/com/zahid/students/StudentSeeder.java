@@ -36,7 +36,7 @@ public class StudentSeeder implements CommandLineRunner {
             studentRepository.save(student5);
         }
 
-        logger.info("Number of student items: {}", studentRepository.count());
+        logger.info("Number of student(s): {}", studentRepository.count());
     }
     
 }

@@ -32,7 +32,7 @@ public class CourseSeeder implements CommandLineRunner {
             courseRepository.save(course4);
         }
 
-        logger.info("Number of course items: {}", courseRepository.count());
+        logger.info("Number of course(s): {}", courseRepository.count());
     }
     
 }

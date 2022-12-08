@@ -12,18 +12,4 @@ public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
-	
-	@Bean
-	public ClassLoaderTemplateResolver secondaryTemplateResolver() {
-		ClassLoaderTemplateResolver secondaryTemplateResolver = new ClassLoaderTemplateResolver();
-		secondaryTemplateResolver.setPrefix("templates/students");
-		secondaryTemplateResolver.setPrefix("templates/courses");
-		secondaryTemplateResolver.setSuffix(".html");
-		secondaryTemplateResolver.setTemplateMode(TemplateMode.HTML);
-		secondaryTemplateResolver.setCharacterEncoding("UTF-8");
-		secondaryTemplateResolver.setOrder(1);
-		secondaryTemplateResolver.setCheckExistence(true);
-			
-		return secondaryTemplateResolver;
-	}
 }

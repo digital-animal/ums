@@ -8,8 +8,10 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,13 +33,10 @@ public class DepartmentRestController {
     @Autowired
     private DepartmentService departmentService; // better idea
 
-    @Autowired
-    private CourseService courseService; // better idea
-
-    @GetMapping
-    public List<Department> getAllDepartment() {
-        logger.info("Departments:", departmentService.getAllDepartments());
-        return departmentService.getAllDepartments();
+    @PostMapping
+    public Department createDepartment(@RequestBody Department department) {
+        logger.info("New Department = {}", department);
+        return departmentService.addDepartment(department);
     }
 
     @GetMapping("/{id}")
@@ -46,27 +45,25 @@ public class DepartmentRestController {
         return departmentService.getDepartment(id);
     }
 
+    @GetMapping
+    public List<Department> getAllDepartment() {
+        logger.info("Departments:", departmentService.getAllDepartments());
+        return departmentService.getAllDepartments();
+    }
+
     @PostMapping("/{id}")
     public Department updateDepartment(@RequestBody Department department, @PathVariable("id") Long id) {
         logger.info("Updated Department = {}", department);
-        departmentService.updateDepartment(department);
         return departmentService.updateDepartment(department);
     }
 
-    @PostMapping("/add")
-    public Department createDepartment(@RequestBody Department department) {
-        logger.info("New Department = {}", department);
-        departmentService.addDepartment(department);
 
-        return departmentService.addDepartment(department);
-    }
-
-    @PostMapping("/delete/{id}")
-    public String deleteDepartment(@PathVariable("id") Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteDepartment(@PathVariable("id") Long id) {
         logger.info("Department Id = {}", id);
         departmentService.deleteDepartment(id);
 
-        return "Department Deleted";
+        return ResponseEntity.ok( "Department Deleted");
     }
 
 }

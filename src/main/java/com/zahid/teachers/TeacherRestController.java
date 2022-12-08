@@ -1,9 +1,10 @@
-package com.zahid.teacher;
+package com.zahid.teachers;
 
 import com.zahid.courses.CourseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,9 +16,6 @@ public class TeacherRestController {
 
     @Autowired
     private TeacherService teacherService; // better idea
-
-    @Autowired
-    private CourseService courseService; // better idea
 
     @GetMapping
     public List<Teacher> getAllTeacher() {
@@ -34,33 +32,23 @@ public class TeacherRestController {
     @PostMapping("/{id}")
     public Teacher updateTeacher(@RequestBody Teacher teacher, @PathVariable("id") Long id) {
         logger.info("Updated Teacher = {}", teacher);
-        teacherService.updateTeacher(teacher);
         return teacherService.updateTeacher(teacher);
     }
 
-    @PostMapping("/add")
-    public Teacher createTeacher(@RequestBody Teacher teacher) {
+    @PostMapping
+    public Teacher addTeacher(@RequestBody Teacher teacher) {
         logger.info("New Teacher = {}", teacher);
         teacherService.addTeacher(teacher);
 
         return teacherService.addTeacher(teacher);
     }
 
-    @PostMapping("/delete/{id}")
-    public String deleteTeacher(@PathVariable("id") Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteTeacher(@PathVariable("id") Long id) {
         logger.info("Teacher Id = {}", id);
         teacherService.deleteTeacher(id);
 
-        return "teacher-delete-done";
-    }
-
-    @PutMapping("/api/{teacherId}/{courseId}")
-    public Teacher enrollTeacherToCourse(
-
-            @PathVariable("teacherId") Long teacherId,
-            @PathVariable("courseId") Long courseId
-    ) {
-        return teacherService.enrollTeacherToCourse(teacherId, courseId);
+        return ResponseEntity.ok("Teacher Deleted");
     }
 
 }
