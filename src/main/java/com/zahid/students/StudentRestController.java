@@ -69,12 +69,13 @@ public class StudentRestController {
         return "deleted";
     }
 
-    @PutMapping("/api/{studentId}/{courseId}")
-    public Student enrollStudentToCourse(
+    @PutMapping("/{studentId}/{courseId}")
+    public Student enrollToOneCourse(
 
             @PathVariable("studentId") Long studentId,
             @PathVariable("courseId") Long courseId
     ) {
+        System.out.println("enrollStudentToCourse controller");
         return studentService.enrollStudentToCourse(studentId, courseId);
     }
 

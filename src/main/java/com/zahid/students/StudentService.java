@@ -14,6 +14,8 @@ import com.zahid.courses.CourseService;
 public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
+
+    @Autowired
     private CourseService courseService;
 
     public List<Student> getAllStudents() {
@@ -44,10 +46,13 @@ public class StudentService {
         System.out.println(studentId);
         System.out.println(courseId);
 
+        System.out.println("enrollStudentToCourse service");
+
         Student student = studentRepository.findById(studentId).get();
         Course course = courseService.getCourseById(courseId);
-        Set<Course> enrolledCourseList = student.getEnrolledCourseList();
-        enrolledCourseList.add(course);
+        Set<Course> courses = student.getCourses();
+        courses.add(course);
+        student.setCourses(courses);
         return studentRepository.save(student);
     }
 }
