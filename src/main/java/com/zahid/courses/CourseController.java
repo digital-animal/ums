@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CourseController {
 
     private final Logger logger = LoggerFactory.getLogger(CourseController.class);
-
+    
     private CourseService courseService;
 
     public CourseController(CourseService courseService) {

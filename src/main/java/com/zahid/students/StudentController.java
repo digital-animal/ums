@@ -114,6 +114,7 @@ public class StudentController {
             @PathVariable("courseId") Long courseId
     ) {
         return studentService.enrollStudentToCourse(studentId, courseId);
+
     }
 
 }

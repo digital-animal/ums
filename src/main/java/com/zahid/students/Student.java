@@ -60,7 +60,7 @@ public class Student {
     @Setter
     @Column(name = "address", nullable = true)
     private String address;
-   
+
     @ManyToMany(fetch = FetchType.LAZY,
         cascade = {
             CascadeType.PERSIST,
