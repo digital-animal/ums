@@ -1,4 +1,4 @@
-package com.zahid.teacher;
+package com.zahid.teachers;
 
 import com.zahid.courses.CourseService;
 import org.slf4j.Logger;
@@ -94,16 +94,6 @@ public class TeacherController {
         teacherService.deleteTeacher(id);
 
         return "teacher-delete-done";
-    }
-
-
-    @PutMapping("/api/{teacherId}/{courseId}")
-    public Teacher enrollTeacherToCourse(
-
-            @PathVariable("teacherId") Long teacherId,
-            @PathVariable("courseId") Long courseId
-    ) {
-        return teacherService.enrollTeacherToCourse(teacherId, courseId);
     }
 
 }

@@ -1,19 +1,21 @@
-package com.zahid.teacher;
+package com.zahid.teachers;
 
-import com.zahid.courses.Course;
-import com.zahid.courses.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class TeacherService {
     @Autowired
     private TeacherRepository teacherRepository;
-    private CourseService courseService;
+
+    // private TeacherRepository teacherRepository;
+
+    // public TeacherService(TeacherRepository teacherRepository) {
+    //     this.teacherRepository = teacherRepository;
+    // }
 
     public List<Teacher> getAllTeachers() {
         List<Teacher> teacherList = new ArrayList<>();
@@ -39,14 +41,4 @@ public class TeacherService {
         teacherRepository.deleteById(id);
     }
 
-    public Teacher enrollTeacherToCourse(Long teacherId, Long courseId) {
-        System.out.println(teacherId);
-        System.out.println(courseId);
-
-        Teacher teacher = teacherRepository.findById(teacherId).get();
-        Course course = courseService.getCourseById(courseId);
-        Set<Course> enrolledCourseList = teacher.getEnrolledCourseList();
-        enrolledCourseList.add(course);
-        return teacherRepository.save(teacher);
-    }
 }

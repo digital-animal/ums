@@ -8,8 +8,11 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,9 +34,6 @@ public class StudentRestController {
     @Autowired
     private StudentService studentService; // better idea
 
-    @Autowired
-    private CourseService courseService; // better idea
-
     @GetMapping
     public List<Student> getAllStudent() {
         logger.info("Students:", studentService.getAllStudents());
@@ -53,23 +53,23 @@ public class StudentRestController {
         return studentService.updateStudent(student);
     }
 
-    @PostMapping("/add")
-    public Student createStudent(@RequestBody Student student) {
+    @PostMapping
+    public Student addStudent(@RequestBody Student student) {
         logger.info("New Student = {}", student);
         studentService.addStudent(student);
 
         return studentService.addStudent(student);
     }
 
-    @PostMapping("/delete/{id}")
-    public String deleteStudent(@PathVariable("id") Long id) {
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteStudent(@PathVariable("id") Long id) {
         logger.info("Student Id = {}", id);
         studentService.deleteStudent(id);
 
-        return "deleted";
+        return ResponseEntity.ok("Student Deleted");
     }
 
-    @PutMapping("/api/{studentId}/{courseId}")
+    @PutMapping("/{studentId}/{courseId}")
     public Student enrollStudentToCourse(
 
             @PathVariable("studentId") Long studentId,

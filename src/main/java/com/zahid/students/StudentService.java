@@ -8,16 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zahid.courses.Course;
-import com.zahid.courses.CourseService;
+import com.zahid.courses.CourseRepository;
 
 @Service
 public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
-    private CourseService courseService;
-
+    
     @Autowired
-    private CourseService courseService;
+    private CourseRepository courseRepository;
 
     public List<Student> getAllStudents() {
         List<Student> studentList = new ArrayList<>();
@@ -34,6 +33,7 @@ public class StudentService {
     }
 
     public Student updateStudent(Student student) {
+        System.out.println(student.getId());
         Student t = studentRepository.findById(student.getId()).get();
         t = student;
         return studentRepository.save(t);
@@ -44,8 +44,9 @@ public class StudentService {
     }
 
     public Student enrollStudentToCourse(Long studentId, Long courseId) {
+
         Student student = studentRepository.findById(studentId).get();
-        Course course = courseService.getCourseById(courseId);
+        Course course = courseRepository.findById(courseId).get();
         Set<Course> courses = student.getCourses();
         courses.add(course);
         student.setCourses(courses);

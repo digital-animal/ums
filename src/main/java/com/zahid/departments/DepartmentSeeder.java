@@ -38,7 +38,7 @@ public class DepartmentSeeder implements CommandLineRunner {
             departmentRepository.save(department6);
         }
 
-        logger.info("Number of department items: {}", departmentRepository.count());
+        logger.info("Number of department(s): {}", departmentRepository.count());
     }
     
 }

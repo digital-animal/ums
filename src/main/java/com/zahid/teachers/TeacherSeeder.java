@@ -1,4 +1,4 @@
-package com.zahid.teacher;
+package com.zahid.teachers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +36,7 @@ public class TeacherSeeder implements CommandLineRunner {
             teacherRepository.save(teacher5);
         }
 
-        logger.info("Number of teacher items: {}", teacherRepository.count());
+        logger.info("Number of teacher(s): {}", teacherRepository.count());
     }
     
 }
