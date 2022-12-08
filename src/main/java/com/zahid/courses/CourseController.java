@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RestController
+@RequestMapping("/courses")
 public class CourseController {
 
     private final Logger logger = LoggerFactory.getLogger(CourseController.class);
@@ -23,17 +23,15 @@ public class CourseController {
         this.courseService=courseService;
     }
 
-    @GetMapping("/courses")
+    @GetMapping
     public String listCourses(Model model){
         model.addAttribute("courses", courseService.getAllCourses());
         System.out.println(courseService.getAllCourses());
-
-        logger.info("courses", courseService);
-
+        logger.info("courses", courseService.getAllCourses());
         return "courses";
     }
 
-    @GetMapping("/courses/new")
+    @GetMapping("/new")
     public String createCourseForm(Model model) {
 
         // create course object to hold course form data
@@ -42,26 +40,26 @@ public class CourseController {
         return "course-create";
     }
 
-    @GetMapping("/api/courses/{id}")
+    @GetMapping("/api/{id}")
     public Course getOneCourseWithStudent(@PathVariable("id") Long id) {
 
         return courseService.getCourseById(id);
     }
 
 
-    @PostMapping("/courses")
+    @PostMapping("")
     public String saveCourse(@ModelAttribute("course") Course course) {
         courseService.saveCourse(course);
-        return "redirect:/courses";
+        return "redirect:";
     }
 
-    @GetMapping("/courses/edit/{id}")
+    @GetMapping("/edit/{id}")
     public String editCourseForm(@PathVariable Long id, Model model) {
         model.addAttribute("course", courseService.getCourseById(id));
         return "course-edit";
     }
 
-    @PostMapping("/courses/{id}")
+    @PostMapping("/{id}")
     public String updateCourse(@PathVariable Long id,
                                 @ModelAttribute("course") Course course,
                                 Model model) {
@@ -74,14 +72,14 @@ public class CourseController {
 
         // save updated course object
         courseService.updateCourse(existingCourse);
-        return "redirect:/courses";
+        return "redirect:";
     }
 
     // handler method to handle delete course request
 
-    @GetMapping("/courses/{id}")
+    @GetMapping("/{id}")
     public String deleteCourse(@PathVariable Long id) {
         courseService.deleteCourseById(id);
-        return "redirect:/courses";
+        return "redirect:";
     }
 }

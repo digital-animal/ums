@@ -8,11 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zahid.courses.Course;
+import com.zahid.courses.CourseService;
 
 @Service
 public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
+
+    @Autowired
+    private CourseService courseService;
 
     public List<Student> getAllStudents() {
         List<Student> studentList = new ArrayList<>();
@@ -24,25 +28,31 @@ public class StudentService {
         return studentRepository.findById(id).get();
     }
 
-    public void addStudent(Student student) {
-        studentRepository.save(student);
+    public Student addStudent(Student student) {
+        return studentRepository.save(student);
     }
 
-    public void updateStudent(Student student) {
+    public Student updateStudent(Student student) {
         Student t = studentRepository.findById(student.getId()).get();
         t = student;
-        studentRepository.save(t);
+        return studentRepository.save(t);
     }
 
     public void deleteStudent(Long id) {
         studentRepository.deleteById(id);
     }
 
-    public void enrollStudentToCourse(Student student, Course course) {
-        Student s = studentRepository.findById(student.getId()).get();
-        Set<Course> enrolledCourseList = s.getEnrolledCourseList();
-        System.out.println(enrolledCourseList);
-        enrolledCourseList.add(course);
-        studentRepository.save(s);
+    public Student enrollStudentToCourse(Long studentId, Long courseId) {
+        System.out.println(studentId);
+        System.out.println(courseId);
+
+        System.out.println("enrollStudentToCourse service");
+
+        Student student = studentRepository.findById(studentId).get();
+        Course course = courseService.getCourseById(courseId);
+        Set<Course> courses = student.getCourses();
+        courses.add(course);
+        student.setCourses(courses);
+        return studentRepository.save(student);
     }
 }
