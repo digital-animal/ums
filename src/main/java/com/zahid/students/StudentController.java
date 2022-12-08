@@ -107,6 +107,8 @@ public class StudentController {
         return "redirect:";
     }
 
+    @PutMapping("/api/{studentId}/{courseId}")
+    public Student enrollStudentToCourse(
 
     @PutMapping("/api/{studentId}/{courseId}")
     public Student enrollStudentToCourse(

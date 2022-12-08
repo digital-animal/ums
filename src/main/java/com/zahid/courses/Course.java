@@ -28,9 +28,16 @@ public class Course {
     @Column(name = "course_hour", nullable = false)
     private String courseHour;
 
-    // @JsonIgnore
-    @ManyToMany
-    private Set<Course> enrolledStudents = new HashSet<>();
+    @ManyToMany(fetch = FetchType.LAZY,
+    cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+        },
+        mappedBy = "courses"
+    )
+    // @ManyToMany(mappedBy = "courses")
+    @JsonIgnore 
+    private Set<Student> students = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(
@@ -43,7 +50,5 @@ public class Course {
         this.courseTitle = courseTitle;
         this.courseHour = couseHour;
     }
-    
-    public void enrollStudentToCourse(Student student) {
-    }
+   
 }

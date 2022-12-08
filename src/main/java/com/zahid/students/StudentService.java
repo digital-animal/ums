@@ -16,6 +16,9 @@ public class StudentService {
     private StudentRepository studentRepository;
     private CourseService courseService;
 
+    @Autowired
+    private CourseService courseService;
+
     public List<Student> getAllStudents() {
         List<Student> studentList = new ArrayList<>();
         studentRepository.findAll().forEach(studentList::add);
@@ -41,13 +44,12 @@ public class StudentService {
     }
 
     public Student enrollStudentToCourse(Long studentId, Long courseId) {
-        System.out.println(studentId);
-        System.out.println(courseId);
-
         Student student = studentRepository.findById(studentId).get();
         Course course = courseService.getCourseById(courseId);
-        Set<Course> enrolledCourseList = student.getEnrolledCourseList();
-        enrolledCourseList.add(course);
+        Set<Course> courses = student.getCourses();
+        courses.add(course);
+        student.setCourses(courses);
+
         return studentRepository.save(student);
     }
 }

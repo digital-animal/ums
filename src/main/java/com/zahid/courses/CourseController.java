@@ -27,6 +27,7 @@ public class CourseController {
     @GetMapping
     public String listCourses(Model model){
         model.addAttribute("courses", courseService.getAllCourses());
+
         logger.info("courses", courseService.getAllCourses());
         return "courses";
     }
